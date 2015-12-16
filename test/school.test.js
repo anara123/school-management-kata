@@ -4,14 +4,13 @@ var chai = require('chai');
 var assert = chai.assert;
 
 var SchoolFactory = require('../src/school');
-var StudentFactory = require('../src/student');
 var RegistrationFormFactory = require('../src/registration-form');
 var UuidFactory = require('../src/uuid-generator');
-describe('Testing school', function() {
+describe('Testing school', function () {
 
-    describe('for valid creation', function() {
+    describe('for valid creation', function () {
 
-        it('should return a school', function() {
+        it('should return a school', function () {
             var schoolData = {
                 name: "TDD School"
             };
@@ -22,10 +21,8 @@ describe('Testing school', function() {
         });
     });
 
-
-
-    describe('#register', function(){
-        it('should register the user', function(){
+    describe('#register', function () {
+        it('should register the user', function () {
             var schoolData = {
                 name: "TDD School"
             };
@@ -33,7 +30,7 @@ describe('Testing school', function() {
             var school = SchoolFactory.create(schoolData);
 
             var form = {
-                userId: UuidFactory.create({id:1}),
+                userId: UuidFactory.create({id: 1}),
                 name: 'Həzrət',
                 surname: 'Ibadov',
                 patronymic: 'Memmed',
@@ -47,8 +44,8 @@ describe('Testing school', function() {
             var actual = school.register(registrationForm);
 
             var expected = {
-                user:{
-                    userId: UuidFactory.create({id:1}),
+                user: {
+                    userId: UuidFactory.create({id: 1}),
                     name: 'Həzrət',
                     surname: 'Ibadov',
                     patronymic: 'Memmed',
@@ -59,13 +56,7 @@ describe('Testing school', function() {
                 acceptanceGrade: 547
             };
 
-            //StudentFactory.save = function() {
-            //
-            //};
-
             assert.shallowDeepEqual(actual, expected);
-
-
         })
     })
 });

@@ -1,13 +1,15 @@
+'use strict';
+
 var chai = require('chai');
 var assert = chai.assert;
 
 var RegistrationFormFactory = require('../src/registration-form');
 
-describe('registration-form test', function() {
+describe('registration-form test', function () {
 
     describe('#validate valid form', function () {
 
-        it('should return true', function() {
+        it('should return true', function () {
 
             var form = {
                 name: 'H?zr?t',
@@ -28,7 +30,7 @@ describe('registration-form test', function() {
 
     describe('#validate invalid form - email not exist', function () {
 
-        it('should return false', function() {
+        it('should return false', function () {
 
             var form = {
                 name: 'H?zr?t',
@@ -47,7 +49,7 @@ describe('registration-form test', function() {
 
     describe('#validate invalid form - name is contains digits', function () {
 
-        it('should return false', function() {
+        it('should return false', function () {
 
             var form = {
                 name: 'H?zr5?t',
