@@ -1,14 +1,18 @@
+'use strict';
 var regString = /[0-9]|\s/;
 var regEmail = /^[a-z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)?@[a-z][a-zA-Z-0-9]*\.[a-z]+(\.[a-z]+)?$/;
 var regPhone = /[1-9]{9}$/;
+
 var RegistrationForm = {
     init: function(args){
+        this.userId = args.userId;
         this.name = args.name;
         this.surname = args.surname;
         this.patronymic = args.patronymic;
         this.email = args.email;
         this.phone = args.phone;
         this.image = args.image;
+        this.acceptanceGrade = args.acceptanceGrade;
         this.isValid = false;
     },
 
