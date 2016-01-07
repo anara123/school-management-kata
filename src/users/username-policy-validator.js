@@ -8,7 +8,6 @@ var UsernamePolicyValidator = {
         this.accountLoader = args.accountLoader || AccountLoaderFactory.create();
     },
     validate: function(username, done) {
-
         this.accountLoader.findByUsername(username, function(err, account) {
             if(account) {
                 return done(null, false);

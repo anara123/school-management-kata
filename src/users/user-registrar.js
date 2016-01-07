@@ -14,7 +14,7 @@ var UserRegistrar = {
     init: function (args) {
         args = args || {};
         this.userFormValidator = args.userFormValidator || UserFormValidatorFactory.create();
-        this.accountGenerator = args.accountParamsGenerator || AccountParamsGeneratorFactory.create(args);
+        this.accountGenerator = args.accountParamsGenerator || AccountParamsGeneratorFactory.create();
         this.accountFormValidator = args.accountFormValidator || AccountFormValidator.create();
         this.userSaver = args.userSaver || UserSaverFactory.create();
     },
@@ -23,8 +23,8 @@ var UserRegistrar = {
         var self = this;
         async.waterfall([
             function validateUserForm(next) {
-                var isFormValid = self.userFormValidator.validate(userRegistrationForm);
-                return next(null, isFormValid)
+                self.userFormValidator.validate(userRegistrationForm,next);
+
             },
 
             function generateAccount(isFormValid, next) {
@@ -36,16 +36,20 @@ var UserRegistrar = {
             },
 
             function validateAccountForm(accountParams, next) {
-                self.accountFormValidator.validate(accountParams,function(err,result){
-                    return next(null, {isAccountValid: result, accountParams: accountParams});
-                });
+                self.accountFormValidator.validate(accountParams, function (err, result) {
+                    if (err) {
 
-                //return next(null, {isAccountValid: isAccountValid, accountParams: accountParams})
+                    }
+                    else {
+                        return next(null, {isAccountValid: result, accountParams: accountParams});
+                    }
+                });
             },
 
             function createAccountFromParams(accountForm, next) {
-                if(accountForm) {
-                    var form  = accountForm.accountParams.form;
+
+                if (accountForm) {
+                    var form = accountForm.accountParams.form;
                     var account = AccountFactory.createFromForm({
                         username: form.username,
                         password: form.password,
@@ -60,8 +64,7 @@ var UserRegistrar = {
             },
 
             function createUser(account, next) {
-
-                var createdUser = UserFactory.createFromForm({ form: userRegistrationForm, account: account });
+                var createdUser = UserFactory.createFromForm({form: userRegistrationForm, account: account});
                 return next(null, createdUser);
             },
 

@@ -8,6 +8,7 @@ var StudentRegistrationFormValidator = {
     },
 
     validate: function (form) {
+
         return this.validateGrade(form.grade) && this.validateClassNumber(form.classNumber) ? true : false;
     },
 
@@ -27,7 +28,9 @@ var StudentRegistrationFormValidator = {
         else {
             return false;
         }
-    }
+    },
+
+
 };
 
 var StudentRegistrationFormValidatorFactory = {

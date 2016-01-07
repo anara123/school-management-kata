@@ -17,12 +17,17 @@ var EmailFactory = {
     createStudentRegistrationEmail: function (user) {
         var newEmail = Object.create(Email);
         newEmail.init(user);
-
         return newEmail;
     },
 
     createAccountDetailsEmail: function (args) {
 
+    },
+
+    createEmployeeRegistrationEmail: function(user){
+        var newEmail = Object.create(Email);
+        newEmail.init(user);
+        return newEmail;
     }
 };
 
